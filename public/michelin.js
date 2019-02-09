@@ -1,27 +1,26 @@
 const rp = require('request-promise');
 const $ = require('cheerio');
 const url = 'https://restaurant.michelin.fr/restaurants/france/restaurants-1-etoile-michelin/restaurants-2-etoiles-michelin/restaurants-3-etoiles-michelin?indirect=278';
+const nomRestaurants = require('./nomRestaurants');
+
+
+
 
 rp(url)
-  .then(function(html){
-    //success!
-var temp;
-    var listeNom = [];
-    var container = $('.poi-search-result',html);
-    container.find('li').each(function(i,elem){
-    temp = ($(this).find('div').attr('attr-gtm-title'));
-    if(temp != null){
-      listeNom.push(temp);
-    }
-      //console.log($(this).first('a'));
+    .then(function(html){
+      const listeUrl = [];
+      for(var i=1;i<36;i++){
+        listeUrl.push("https://restaurant.michelin.fr/restaurants/france/restaurants-1-etoile-michelin/restaurants-2-etoiles-michelin/restaurants-3-etoiles-michelin/page-"+i+"?indirect=278")
+      }
+      return Promise.all(
+        listeUrl.map(function(url){
+          return nomRestaurants(url);
+        })
+      );
     })
-
-
-  //console.log($(this).first('a'));
-
-
-    console.log(listeNom);
-  })
-  .catch(function(err){
-    //handle error
-  });
+    .then(function(listeNom){
+      console.log(listeNom);
+    })
+    .catch(function(err){
+      //handle error
+});
