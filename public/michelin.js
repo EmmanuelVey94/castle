@@ -19,7 +19,7 @@ rp(url)
       );
     })
     .then(function(listeNom){
-      console.log(listeNom);
+      return listeNom;
     })
     .catch(function(err){
       //handle error
