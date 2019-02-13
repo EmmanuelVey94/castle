@@ -11,7 +11,12 @@ exports.grabAllPrices = async function grabAllPrices (tableauURL){
       var prix = await minPriceHotel.grabPriceHotel(tableauURL[i].urlHotel);
       var url = tableauURL[i].urlHotel;
       var chef = tableauURL[i].chef;
-      lesPrix.push({url,chef,prix});
+      var nom = tableauURL[i].nom;
+      if(prix!=0){
+        lesPrix.push({nom,url,chef,prix});
+      }
+      console.log(i);
+
     }
   }
   catch(error){

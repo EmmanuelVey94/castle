@@ -19,6 +19,8 @@ exports.grabChefName = async function grabChefName (url){
       if($(this).text()==text){
         listeFrance=$(this).next().find('li').each(function(i,elem){
           var urlHotel = String($(this).find('a').attr('href'));
+          var nom = resize(String($(this).find('a').first().text()));
+
           var chef = String($(this).find('a').next().attr('href'));
           if(chef.slice(34,38)=="chef"){
             chef = chef.slice(39);
@@ -34,7 +36,7 @@ exports.grabChefName = async function grabChefName (url){
           }
           if(chef != ""){
 
-            listeLienEtChef.push({urlHotel,chef});
+            listeLienEtChef.push({urlHotel,chef,nom});
           }
         });
       }
@@ -47,38 +49,10 @@ exports.grabChefName = async function grabChefName (url){
 
   return listeLienEtChef;
 }
-/*
-const castle = function(){
-  return rp(urlDepart)
-    .then(function(html){
-      var text = "France";
-      var listeFrance;
-      var listeLien=[];
-      var quatre = $("#countryF", html);
-      quatre.find('h3').each(function(i,elem){
-        if($(this).text()==text){
-          listeFrance=$(this).next();
-        }
-      });
-      count=0;
-      listeFrance.find('li').each(function(i,elem){
-        var urlHotel = String($(this).find('a').attr('href'));
-        var chef = String($(this).find('a').next().attr('href'));
-        if(chef.slice(34,38)=="chef"){
-          chef = chef.slice(39);
-        }else{
-          chef="";
-        }
-        if(chef != ""){
-          listeLien.push({urlHotel,chef});
-        }
-      //console.log($(this).first('a'));
-      })
-      return listeLien;
-    })
-    .catch(function(err){
-      //handle error
-    });
+
+function resize(str){
+  str=str.slice(45);
+  var size = str.length * (-1);
+  str=str.slice(size,-41);
+  return str;
 }
-module.exports = castle;
-*/

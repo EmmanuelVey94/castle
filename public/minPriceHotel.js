@@ -11,7 +11,7 @@ exports.grabPriceHotel = async function grabPriceHotel (url){
   let prix;
   try{
     let $ = await rp(option);
-    if(String($('.priceTag').children().children().first().attr("class")) == "currency"){
+    if(String($('.priceTag').children().children().first().attr("class")) != "priceLabel"){
       prix = $('.price').text();
     }
     else{
