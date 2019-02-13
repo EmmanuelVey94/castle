@@ -3,24 +3,38 @@ const cheerio = require('cheerio');
 const castle = require('./castle');
 const michelin = require('./michelin');
 const allPrices = require('./allPrices');
+var fs = require('fs');
 const url = 'https://www.relaischateaux.com/fr/site-map/etablissements';
 
 
 Main();
 
 async function Main(){
-  var allNomChefMichelin = await michelin.grabAllNames();
-  var allNomHotelChefCastle = await castle.grabChefName(url);
+  var tab = jsonToTab('./endResult.json'); // ligne pour lire un fichier JSON
+  console.log(tab);
+  //var allNomChefMichelin = await michelin.grabAllNames();
+  //var allNomHotelChefCastle = await castle.grabChefName(url);
+  //console.log(allNomHotelChefCastle);
 
   //console.log(allNomChefMichelin);
   //console.log(allNomHotelChefCastle);
-  var tri = isInside(allNomHotelChefCastle,allNomChefMichelin);
-  var allPricesAndUrlAndChef = await allPrices.grabAllPrices(tri);
-  console.log(allPricesAndUrlAndChef);
-//  console.log(JSON.stringify(allNomChefMichelin));
-
+  //var tri = isInside(allNomHotelChefCastle,allNomChefMichelin);
+  //var allPricesAndUrlAndChef = await allPrices.grabAllPrices(tri);
+  //tabToJson(allNomHotelChefCastle,'endResult.json');
 }
-
+function tabToJson(tab,file){
+  var str = JSON.stringify(tab);
+  fs.writeFile(file,str,function (err) {
+  if (err) throw err;
+  console.log('Saved!');
+  });
+}
+function jsonToTab(file){
+  var result = fs.readFileSync(file);
+  result= result.toString();
+  var tabResult = JSON.parse(result);
+  return tabResult;
+}
 function isInside(tab1,tab2){
   let tabResultat=[];
   for(let i =0;i<tab1.length;i++){
