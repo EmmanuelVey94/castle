@@ -2,14 +2,14 @@ const rp = require('request-promise');
 const cheerio = require('cheerio');
 const castle = require('./castle');
 const michelin = require('./michelin');
-//const castle = require('./allPrices');
+const allPrices = require('./allPrices');
 const url = 'https://www.relaischateaux.com/fr/site-map/etablissements';
 
 
 Main();
 
 async function Main(){
-  //var allNomChefMichelin = await michelin.grabAllNames();
+  var allNomChefMichelin = await michelin.grabAllNames();
   var allNomHotelChefCastle = await castle.grabChefName(url);
 
   console.log(allNomChefMichelin);
@@ -17,8 +17,8 @@ async function Main(){
   var tri = isInside(allNomHotelChefCastle,allNomChefMichelin);
   console.log(tri);
   console.log(tri.length);
-  //var allPricesAndUrlAndChef = await allPrices.grabAllPrices(allNomHotelChefCastle);
-  //console.log(allPricesAndUrlAndChef);
+  var allPricesAndUrlAndChef = await allPrices.grabAllPrices(tri);
+  console.log(allPricesAndUrlAndChef);
 
 }
 

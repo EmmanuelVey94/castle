@@ -1,7 +1,7 @@
 const rp = require('request-promise');
 const cheerio = require('cheerio');
 
-exports.grapPriceHotel = async function grabPriceHotel (url){
+exports.grabPriceHotel = async function grabPriceHotel (url){
   const option = {
     uri: url,
     transform: function (body){
@@ -11,11 +11,15 @@ exports.grapPriceHotel = async function grabPriceHotel (url){
   let prix;
   try{
     let $ = await rp(option);
-    prix = $('.price').text();
+    if(String($('.priceTag').children().children().first().attr("class")) == "currency"){
+      prix = $('.price').text();
+    }
+    else{
+      prix=0;
+    }
   }
   catch(error){
     console.log(error);
   }
-
   return prix;
 }

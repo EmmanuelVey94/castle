@@ -1,22 +1,17 @@
 const rp = require('request-promise');
 const cheerio = require('cheerio');
-const nomChefMichelin2 = require('./minPriceHotel');
+const minPriceHotel = require('./minPriceHotel');
 
 exports.grabAllPrices = async function grabAllPrices (tableauURL){
-  const option = {
-    uri: url,
-    transform: function (body){
-      return cheerio.load(body);
-    }
-  };
-  var temp;
+
 
   var lesPrix=[];
   try{
     for(var i=0;i<tableauURL.length;i++){
       var prix = await minPriceHotel.grabPriceHotel(tableauURL[i].urlHotel);
-
-      lesPrix.push({tableauURL[i].urlHotel,tableauURL[i].chef,prix});
+      var url = tableauURL[i].urlHotel;
+      var chef = tableauURL[i].chef;
+      lesPrix.push({url,chef,prix});
     }
   }
   catch(error){
