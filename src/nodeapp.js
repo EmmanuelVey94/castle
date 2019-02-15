@@ -22,7 +22,7 @@ async function Main(){
   console.log(allNomHotelChefCastle);
   var tri = isInside(allNomHotelChefCastle,allNomChefMichelin);
   var allPricesAndUrlAndChef = await allPrices.grabAllPrices(tri);
-  tabToJson(allPricesAndUrlAndChef,'endResult.json');
+  tabToJson(allNomHotelChefCastle,'endResult.json');
 }
 function tabToJson(tab,file){
   var str = JSON.stringify(tab);
