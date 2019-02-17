@@ -23,7 +23,8 @@ class Table extends React.Component{
       accessor: 'chef'
     }, {
       Header: 'URLs',
-      accessor: 'url'
+      accessor: 'url',
+      Cell: props=> <a href={props.value}>{props.value}</a>
     }];
     return(
       <ReactTable

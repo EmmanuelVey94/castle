@@ -16,10 +16,9 @@ async function Main(){
 
   var allNomChefMichelin = await michelin.grabAllNames();
   var allNomHotelChefCastle = await castle.grabChefName(url);
-  console.log(allNomHotelChefCastle);
 
-  console.log(allNomChefMichelin);
-  console.log(allNomHotelChefCastle);
+  //console.log(allNomChefMichelin);
+  //console.log(allNomHotelChefCastle);
   var tri = isInside(allNomHotelChefCastle,allNomChefMichelin);
   var allPricesAndUrlAndChef = await allPrices.grabAllPrices(tri);
   tabToJson(allPricesAndUrlAndChef,'endResult.json');
