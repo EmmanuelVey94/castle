@@ -15,7 +15,7 @@ exports.grabAllPrices = async function grabAllPrices (tableauURL){
       if(prix!=0){
         lesPrix.push({nom,url,chef,prix});
       }
-      console.log(i);
+      console.log("Récupération du prix de l'élément "+i+" des hotels ayant un restaurant étoilé");
 
     }
   }

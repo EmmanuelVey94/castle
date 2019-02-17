@@ -27,7 +27,7 @@ function tabToJson(tab,file){
   var str = JSON.stringify(tab);
   fs.writeFile(file,str,function (err) {
   if (err) throw err;
-  console.log('Saved!');
+  console.log('Fichier JSON crée!');
   });
 }
 function jsonToTab(file){

@@ -21,7 +21,7 @@ exports.grabAllNames = async function grabAllNames (){
 
         listeChef.push(nomChef[j]);
       }
-      console.log(i);
+      console.log("Analyse de la page "+(i+1)+"/35 du site michelin");
 
     }
   }

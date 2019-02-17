@@ -18,6 +18,7 @@ exports.grabChefName = async function grabChefName (url){
     $("#countryF").find('h3').each(function(i,elem){
       if($(this).text()==text){
         listeFrance=$(this).next().find('li').each(function(i,elem){
+          console.log("Analyse de l'établissement "+i+" du site Relais-chateau");
           var urlHotel = String($(this).find('a').attr('href'));
           var nom = resize(String($(this).find('a').first().text()));
 
