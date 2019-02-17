@@ -13,7 +13,8 @@ class Table extends React.Component{
 
     const columns = [{
       Header: 'Noms',
-      accessor: 'nom' // String-based value accessors!
+      accessor: 'nom', // String-based value accessors!
+      Cell: props => <a href={props.original.url}>{props.value}</a>
     }, {
       Header: 'Prix',
       accessor: 'prix',
