@@ -11,7 +11,7 @@ exports.grabUrlAndName = async function grabUrlAndName (url){
   };
   var temp;
   var listeUrl = [];
-  var listeChef=[];
+  var listeChefEtEtoile=[];
   try{
     let $ = await rp(option);
     var container = $('.poi-card-link').each(function(){
@@ -20,13 +20,13 @@ exports.grabUrlAndName = async function grabUrlAndName (url){
     });
 
     for(var i=0;i<listeUrl.length;i++){
-      var nomChef = await nomChefMichelin2.grabChefName(listeUrl[i]);
-      listeChef.push(nomChef);
+      var nomChefEtEtoile = await nomChefMichelin2.grabChefName(listeUrl[i]);
+      listeChefEtEtoile.push(nomChefEtEtoile);
     }
   }
   catch(error){
     console.log(error);
   }
 
-  return listeChef;
+  return listeChefEtEtoile;
 }

@@ -12,6 +12,7 @@ exports.grabChefName = async function grabChefName (url){
   try{
     let $ = await rp(option);
     chef = $('.field--name-field-chef').find('div').children().text();
+    etoile = String($('.guide-icon').attr('class')).slice(32,33);
     var nomPrenom = chef.split('-');
     chef='';
     for(let i=0;i<nomPrenom.length-1;i++){
@@ -24,5 +25,5 @@ exports.grabChefName = async function grabChefName (url){
     console.log(error);
   }
 
-  return chef;
+  return {chef,etoile};
 }

@@ -22,6 +22,10 @@ class Table extends React.Component{
     }, {
       Header: 'Chefs',
       accessor: 'chef'
+    },{
+      Header: 'Etoile',
+      accessor: 'etoile',
+      Cell: props => <span className='number'>{props.value}</span>
     }, {
       Header: 'URLs',
       accessor: 'url',

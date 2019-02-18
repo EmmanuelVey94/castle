@@ -7,7 +7,7 @@ const urlRestaurantMichelin2 = require('./urlRestaurantMichelin2');
 
 exports.grabAllNames = async function grabAllNames (){
 
-  const listeChef=[];
+  const listeChefEtEtoile=[];
   const listeUrl = [];
   for(var i=1;i<36;i++){
     listeUrl.push("https://restaurant.michelin.fr/restaurants/france/restaurants-1-etoile-michelin/restaurants-2-etoiles-michelin/restaurants-3-etoiles-michelin/page-"+i+"?indirect=278")
@@ -16,10 +16,10 @@ exports.grabAllNames = async function grabAllNames (){
   try{
 
     for(var i=0;i<listeUrl.length;i++){
-      var nomChef = await urlRestaurantMichelin2.grabUrlAndName(listeUrl[i]);
-      for(let j=0;j<nomChef.length;j++){
+      var nomChefEtEtoile = await urlRestaurantMichelin2.grabUrlAndName(listeUrl[i]);
+      for(let j=0;j<nomChefEtEtoile.length;j++){
 
-        listeChef.push(nomChef[j]);
+        listeChefEtEtoile.push(nomChefEtEtoile[j]);
       }
       console.log("Analyse de la page "+(i+1)+"/35 du site michelin");
 
@@ -29,7 +29,7 @@ exports.grabAllNames = async function grabAllNames (){
     console.log(error);
   }
 
-  return listeChef;
+  return listeChefEtEtoile;
 }
 /*
 rp(url)

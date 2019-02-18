@@ -38,10 +38,18 @@ function jsonToTab(file){
 }
 function isInside(tab1,tab2){
   let tabResultat=[];
+  var urlHotel;
+  var chef;
+  var nom;
+  var etoile;
   for(let i =0;i<tab1.length;i++){
     for(let j=0;j<tab2.length;j++){
-      if(tab1[i].chef==tab2[j]){
-        tabResultat.push(tab1[i]);
+      if(tab1[i].chef==tab2[j].chef){
+        urlHotel=tab1[i].urlHotel;
+        chef = tab1[i].chef;
+        nom = tab1[i].nom;
+        etoile = tab2[j].etoile;
+        tabResultat.push({urlHotel,chef,nom,etoile});
       }
     }
   }
